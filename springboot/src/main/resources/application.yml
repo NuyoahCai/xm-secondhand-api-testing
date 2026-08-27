@@ -1,0 +1,35 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:YOUR_DATABASE_PASSWORD}
+    url: jdbc:mysql://localhost:3306/xm-secondhand?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+ip: localhost
+
+alipay:
+  appId: ${ALIPAY_APP_ID:YOUR_APP_ID}
+  appPrivateKey: ${ALIPAY_PRIVATE_KEY:YOUR_PRIVATE_KEY}
+  alipayPublicKey: ${ALIPAY_PUBLIC_KEY:YOUR_PUBLIC_KEY}
+  notifyUrl: ${ALIPAY_NOTIFY_URL:http://localhost:9090/alipay/notify}
